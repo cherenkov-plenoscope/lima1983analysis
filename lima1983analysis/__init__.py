@@ -3,9 +3,9 @@ import numpy
 
 def estimate_N_s_eq9(N_off, alpha, S):
     """
+    Returns the required signal N_s to obtain significance S using:
     Eq.9 in Section II, Immediatly estimating the standard deviation of
     the observerd signal.
-    Estimate the required signal N_s to obtain significance S.
 
     Parameters
     ----------
@@ -26,9 +26,9 @@ def estimate_N_s_eq9(N_off, alpha, S):
 
 def estimate_S_eq9(N_on, N_off, alpha):
     """
+    Returns the significance S using:
     Eq.9 in Section II, Immediatly estimating the standard deviation of
     the observerd signal N_s.
-    Estimate the significance S.
 
     Parameters
     ----------
@@ -50,8 +50,8 @@ def estimate_S_eq9(N_on, N_off, alpha):
 
 def estimate_S_eq17(N_on, N_off, alpha):
     """
+    Returns the significance S using:
     Eq.17 in Section III, Based on statistical hypotheses test.
-    Estimate the significance S.
 
     Parameters
     ----------
@@ -92,9 +92,8 @@ def estimate_N_s_eq17(
     N_s_start=None,
 ):
     """
+    Returns the required signal N_s to obtain significance S using:
     Eq.17 in Section III, Based on statistical hypotheses test.
-    Estimate the required signal N_s to obtain significance S.
-
     This runs an iteration by forward computing S.
 
     Parameters
@@ -118,9 +117,9 @@ def estimate_N_s_eq17(
     assert N_s_start >= 0.0
 
     N_s_it = float(N_s_start)
-    iteration = 0
+    it = 0
     while True:
-        assert iteration <= max_num_iterations
+        assert it <= max_num_iterations
 
         N_on_it = N_off * alpha + N_s_it
         S_it = estimate_S_eq17(N_on=N_on_it, N_off=N_off, alpha=alpha)
@@ -136,6 +135,6 @@ def estimate_N_s_eq17(
         else:
             N_s_it *= (1 + rr)
 
-        iteration += 1
+        it += 1
 
     return N_s_it
