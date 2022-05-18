@@ -5,7 +5,7 @@ with open("README.md", "r") as f:
     long_description = f.read()
 
 setuptools.setup(
-    name="lima1983analysis",
+    name="lima1983analysis_sebastian-achim-mueller",
     version="0.0.0",
     description="Sensitivity, Ti-Pei Li and Yu-Qian-Ma, APJ 272:317-324, 1983",
     long_description=long_description,
