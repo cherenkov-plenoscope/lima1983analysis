@@ -19,9 +19,9 @@ def estimate_N_s_eq9(N_off, alpha, S):
     assert N_off > 0.0
     assert alpha > 0.0
     assert S >= 0.0
-    p = S**2 * alpha
-    q = -1.0 * S**2 * N_off * alpha * (1 + alpha)
-    return -p/2 + numpy.sqrt((p/2)**2 - q)
+    p = S ** 2 * alpha
+    q = -1.0 * S ** 2 * N_off * alpha * (1 + alpha)
+    return -p / 2 + numpy.sqrt((p / 2) ** 2 - q)
 
 
 def estimate_S_eq9(N_on, N_off, alpha):
@@ -43,7 +43,7 @@ def estimate_S_eq9(N_on, N_off, alpha):
     assert N_on > 0.0
     assert N_off > 0.0
     assert alpha > 0.0
-    _N_s = (N_on - N_off * alpha)
+    _N_s = N_on - N_off * alpha
     assert _N_s >= 0.0
     return _N_s / numpy.sqrt(alpha * (N_on + N_off))
 
@@ -66,13 +66,13 @@ def estimate_S_eq17(N_on, N_off, alpha):
     assert N_on > 0.0
     assert N_off > 0.0
     assert alpha > 0.0
-    _N_s = (N_on - N_off * alpha)
+    _N_s = N_on - N_off * alpha
     assert _N_s >= 0.0
     ln = numpy.log
     sqrt = numpy.sqrt
     a = alpha
 
-    _on = (1 + a)/a * N_on / (N_on + N_off)
+    _on = (1 + a) / a * N_on / (N_on + N_off)
     _off = (1 + a) * N_off / (N_on + N_off)
     S = sqrt(2) * sqrt(N_on * ln(_on) + N_off * ln(_off))
 
@@ -80,16 +80,11 @@ def estimate_S_eq17(N_on, N_off, alpha):
 
 
 def _relative_ratio(a, b):
-    return numpy.abs(a - b)/(0.5 * (a + b))
+    return numpy.abs(a - b) / (0.5 * (a + b))
 
 
 def estimate_N_s_eq17(
-    N_off,
-    alpha,
-    S,
-    margin=1e-6,
-    max_num_iterations=1000,
-    N_s_start=None,
+    N_off, alpha, S, margin=1e-6, max_num_iterations=1000, N_s_start=None,
 ):
     """
     Returns the required signal N_s to obtain significance S using:
@@ -131,9 +126,9 @@ def estimate_N_s_eq17(
 
         rr = ratio / 3
         if S_it > S:
-            N_s_it *= (1 - rr)
+            N_s_it *= 1 - rr
         else:
-            N_s_it *= (1 + rr)
+            N_s_it *= 1 + rr
 
         it += 1
 
