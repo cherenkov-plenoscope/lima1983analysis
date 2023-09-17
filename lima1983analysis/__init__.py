@@ -1,3 +1,4 @@
+from .version import __version__
 import numpy
 
 
@@ -19,8 +20,8 @@ def estimate_N_s_eq9(N_off, alpha, S):
     assert N_off > 0.0
     assert alpha > 0.0
     assert S >= 0.0
-    p = S ** 2 * alpha
-    q = -1.0 * S ** 2 * N_off * alpha * (1 + alpha)
+    p = S**2 * alpha
+    q = -1.0 * S**2 * N_off * alpha * (1 + alpha)
     return -p / 2 + numpy.sqrt((p / 2) ** 2 - q)
 
 
@@ -84,7 +85,12 @@ def _relative_ratio(a, b):
 
 
 def estimate_N_s_eq17(
-    N_off, alpha, S, margin=1e-6, max_num_iterations=1000, N_s_start=None,
+    N_off,
+    alpha,
+    S,
+    margin=1e-6,
+    max_num_iterations=1000,
+    N_s_start=None,
 ):
     """
     Returns the required signal N_s to obtain significance S using:
